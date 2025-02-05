@@ -1,6 +1,7 @@
 import streamlit as st
 
 # Judul Aplikasi
+st.image('aranademi.png', width=200)
 st.title("Kunci Determinasi Jenis Ikan")
 
 # Deskripsi aplikasi
