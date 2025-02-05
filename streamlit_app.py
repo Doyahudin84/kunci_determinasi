@@ -1,49 +1,70 @@
-
 import streamlit as st
 
-# Judul aplikasi
-st.title("Kunci Determinasi Tumbuhan - Aranademi")
+# Judul Aplikasi
+st.title("Kunci Determinasi Jenis Ikan")
 
-# Penjelasan aplikasi
+# Deskripsi aplikasi
+st.write(
+    """
+    Aplikasi ini membantu mengidentifikasi jenis ikan berdasarkan ciri-ciri fisiknya.
+    Ikuti langkah-langkah di bawah ini untuk mengetahui jenis ikan yang Anda amati.
+    """
+)
+
+# Fungsi untuk menentukan jenis ikan berdasarkan input
+def identifikasi_ikan(sirip_punggung, tubuh, sirip_panjang, mulut_besar, habitat):
+    if sirip_punggung == "Ganda":
+        return "Ikan Kerapu"
+    elif tubuh == "Ramping dan panjang":
+        if sirip_panjang == "Panjang dan torpedo":
+            return "Ikan Tuna"
+        else:
+            return "Ikan Tenggiri"
+    elif mulut_besar == "Ya":
+        return "Ikan Hiu"
+    elif habitat == "Dasar perairan atau terumbu karang":
+        return "Ikan Kakap"
+    else:
+        return "Ikan Nila"
+
+# Input pengguna
+sirip_punggung = st.selectbox(
+    "Apakah ikan memiliki sirip punggung ganda atau tunggal?",
+    ["Tunggal", "Ganda"]
+)
+
+tubuh = st.selectbox(
+    "Apakah ikan memiliki tubuh ramping dan panjang?",
+    ["Ramping dan panjang", "Gemuk atau bulat"]
+)
+
+sirip_panjang = st.selectbox(
+    "Apakah sirip punggung ikan panjang dan tubuhnya seperti torpedo?",
+    ["Panjang dan torpedo", "Tidak"]
+)
+
+mulut_besar = st.selectbox(
+    "Apakah ikan memiliki mulut besar dengan gigi tajam?",
+    ["Ya", "Tidak"]
+)
+
+habitat = st.selectbox(
+    "Apakah ikan sering ditemukan di dasar perairan atau terumbu karang?",
+    ["Dasar perairan atau terumbu karang", "Perairan terbuka"]
+)
+
+# Tombol untuk menampilkan hasil
+if st.button("Identifikasi Jenis Ikan"):
+    hasil = identifikasi_ikan(sirip_punggung, tubuh, sirip_panjang, mulut_besar, habitat)
+    st.write(f"Jenis ikan yang Anda identifikasi adalah: **{hasil}**")
+
+# Penjelasan tentang keluarga ikan
 st.write("""
-    Aplikasi ini membantu Anda dalam mencari nama tumbuhan berdasarkan kunci determinasi. 
-    Pilihlah ciri-ciri tumbuhan sesuai dengan petunjuk pada setiap tingkat untuk menemukan jenis tumbuhan.
-    -Aranademi-
+### Penjelasan Singkat Mengenai Jenis Ikan:
+- **Ikan Kerapu**: Memiliki sirip punggung ganda dan tubuh besar, sering ditemukan di terumbu karang.
+- **Ikan Tuna**: Tubuh ramping dan panjang, dengan sirip punggung panjang dan bentuk torpedo, ditemukan di perairan terbuka.
+- **Ikan Tenggiri**: Memiliki tubuh ramping dan panjang, sering ditemukan di terumbu karang atau perairan dangkal.
+- **Ikan Hiu**: Memiliki mulut besar dan gigi tajam, ikan pemangsa yang hidup di laut terbuka.
+- **Ikan Kakap**: Sering ditemukan di dasar perairan atau terumbu karang, memiliki tubuh gemuk atau lebih pendek.
+- **Ikan Nila**: Ikan air tawar, sering dibudidayakan dan memiliki tubuh lebih gemuk.
 """)
-
-# Definisikan ciri-ciri untuk setiap tingkat
-tingkat_1 = st.selectbox("1. Apakah tumbuhan berdaun lebar atau sempit?",
-                         ["Daun lebar", "Daun sempit"])
-
-tingkat_2 = None
-tingkat_3 = None
-
-# Berdasarkan pilihan tingkat pertama, tampilkan pilihan untuk tingkat kedua
-if tingkat_1 == "Daun lebar":
-    tingkat_2 = st.selectbox("2. Apakah tumbuhan memiliki bunga berwarna cerah?",
-                             ["Ya", "Tidak"])
-elif tingkat_1 == "Daun sempit":
-    tingkat_2 = st.selectbox("2. Apakah tumbuhan memiliki batang tegak?",
-                             ["Ya", "Tidak"])
-
-# Berdasarkan pilihan tingkat kedua, tampilkan pilihan untuk tingkat ketiga
-if tingkat_2 == "Ya":
-    tingkat_3 = st.selectbox("3. Apakah tumbuhan memiliki duri di batang?",
-                             ["Ya", "Tidak"])
-elif tingkat_2 == "Tidak":
-    tingkat_3 = st.selectbox("3. Apakah tumbuhan tumbuh tinggi?",
-                             ["Ya", "Tidak"])
-
-# Menentukan hasil berdasarkan pilihan
-if tingkat_1 == "Daun lebar" and tingkat_2 == "Ya" and tingkat_3 == "Tidak":
-    st.write("Tumbuhan yang Anda pilih adalah **Bunga Matahari**.")
-elif tingkat_1 == "Daun lebar" and tingkat_2 == "Tidak" and tingkat_3 == "Ya":
-    st.write("Tumbuhan yang Anda pilih adalah **Kaktus**.")
-elif tingkat_1 == "Daun sempit" and tingkat_2 == "Ya" and tingkat_3 == "Tidak":
-    st.write("Tumbuhan yang Anda pilih adalah **Lili**.")
-elif tingkat_1 == "Daun sempit" and tingkat_2 == "Tidak" and tingkat_3 == "Ya":
-    st.write("Tumbuhan yang Anda pilih adalah **Pohon Cemara**.")
-else:
-    st.write("Tumbuhan tidak ditemukan dalam kategori ini. Coba lagi dengan pilihan yang berbeda.")
-
-
