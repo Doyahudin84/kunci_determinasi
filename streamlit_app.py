@@ -8,8 +8,8 @@ st.title("Kunci Determinasi Tumbuhan")
 # Deskripsi aplikasi
 st.write(
     """
-    Aplikasi ini membantu mengidentifikasi jenis ikan berdasarkan ciri-ciri fisiknya.
-    Ikuti langkah-langkah di bawah ini untuk mengetahui jenis ikan yang Anda amati.
+    Aplikasi ini membantu mengidentifikasi Tumbuhan berdasarkan ciri-ciri fisiknya.
+    Ikuti langkah-langkah di bawah ini untuk mengetahui tumbuhan yang Anda amati.
     """
 )
 
