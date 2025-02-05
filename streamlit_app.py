@@ -1,7 +1,8 @@
 import streamlit as st
-
+col1, col2, col3 = st.columns([1, 3, 1])
 # Judul Aplikasi
-st.image('aranademi.png', width=200)
+with col2
+    st.image('aranademi.png', width=200)
 st.title("Kunci Determinasi Jenis Ikan")
 
 # Deskripsi aplikasi
